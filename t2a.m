@@ -3,16 +3,16 @@ clc
 clf
 
 
-nAgents = 100;
+nAgents = 1000;
 gridSize = 100;
 
 moveProb = 0.7;
-infectProb = 0.2;
-recoverProb = 0.005;
+infectProb = 0.4;
+recoverProb = 0.01;
 initInfected = 0.1;
 
 saveFrame = 200;
-maxSteps = 5000;
+maxSteps = 50000;
 
 agentStatus = zeros(nAgents,3); % Holds x,y and susceptible/infected/resistant status for each agent
 
