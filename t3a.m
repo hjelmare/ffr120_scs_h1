@@ -7,7 +7,7 @@ nAgents = 1000;
 gridSize = 100;
 
 moveProb = 0.7;
-epidemicThreshold = 20:10:100;
+epidemicThreshold = 5:5:80;
 recoverProb = 0.005;
 initInfected = 0.01;
 
