@@ -7,14 +7,14 @@ nAgents = 1000;
 gridSize = 100;
 
 moveProb = 0.7;
-epidemicThreshold = 5:20:300; % good sweep
-recoverRates = [0.005 0.01];
+reproductionNumber = 10:5:120;
+infectRates = [0.6 0.2];
 initInfected = 0.01;
 
-nRepeats = 5;              % but bad statistics at 10
+nRepeats = 15;
 maxSteps = 50000;
 
-finalRecovered = zeros(length(epidemicThreshold),length(recoverRates));
+finalRecovered = zeros(length(reproductionNumber),length(infectRates));
 
 agentStatus = zeros(nAgents,3); % Holds x,y and susceptible/infected/resistant status for each agent
 
@@ -24,13 +24,12 @@ saveStatus = zeros(maxSteps,3);   % Save # susceptible/infected/recoverd for eac
 
 colorCode = ['b' 'r' 'g'];
 
-for iRecoverRate = 1:length(recoverRates)
-    recoverProb = recoverRates(iRecoverRate);
-    for iInfectRate = 1:length(epidemicThreshold)
-        disp(['infectRate ' num2str(iInfectRate) ])
-        infectProb = epidemicThreshold(iInfectRate) * recoverProb;
+for iRecoverRate = 1:length(infectRates)
+    infectProb = infectRates(iRecoverRate);
+    for iInfectRate = 1:length(reproductionNumber)
+        recoverProb = infectProb / reproductionNumber(iInfectRate);
         for iRepeat = 1:nRepeats
-            disp(['repeat ' num2str(iRepeat) ])
+            disp(['infect ' num2str(infectProb) ' recover ' num2str(recoverProb) ' repeat ' num2str(iRepeat) ])
             agentStatus(:,3) = 1;   % All are susceptible
 
             % Initialize agent positions
@@ -89,6 +88,7 @@ for iRecoverRate = 1:length(recoverRates)
 
                 if saveStatus(iStep,2) == 0 | iStep == maxSteps
                     zeroInfected = true;
+                    disp(['Steps ' num2str(iStep)]);
                 end
             end
             saveStatus = saveStatus / nAgents;
@@ -100,8 +100,9 @@ for iRecoverRate = 1:length(recoverRates)
 end
 % hold off
 
-plot(finalRecovered,'b')
+plot(finalRecovered,'-x')
 %title(['$$d = ' num2str(moveProb) ', \beta = ' num2str(infectProb) ', \gamma = ' num2str(recoverProb) '$$'],'Interpreter','latex');
 hold off
+save('t3a_n.mat','finalRecovered')
 
 disp('Done!')
