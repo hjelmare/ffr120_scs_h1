@@ -7,8 +7,8 @@ nAgents = 1000;
 gridSize = 100;
 
 moveProb = 0.7;
-reproductionNumber = 10:5:120;
-infectRates = [0.6 0.2];
+reproductionNumber = 5:10:140;
+infectRates = [0.9:-0.1: 0.1];
 initInfected = 0.01;
 
 nRepeats = 15;
@@ -100,14 +100,10 @@ for iRecoverRate = 1:length(infectRates)
 end
 % hold off
 
-plot(reproductionNumber,finalRecovered,'-x')
-xlabel('R_0')
-ylabel('R_\infty')
-title(['$$d = ' num2str(moveProb) '$$'],'Interpreter','latex');
-legend(['\beta = ' num2str(infectRates(1) , ['\beta = ' num2str(infectRates(2)],'Location','SouthEast')
+plot(finalRecovered,'-x')
 %title(['$$d = ' num2str(moveProb) ', \beta = ' num2str(infectProb) ', \gamma = ' num2str(recoverProb) '$$'],'Interpreter','latex');
 hold off
-save('t3a_n.mat','finalRecovered')
-%saveas(gcf,'t3a.png','png')
+filename = ['t4a' num2str(tic) '.mat'];
+save(filename,'finalRecovered')
 
 disp('Done!')
