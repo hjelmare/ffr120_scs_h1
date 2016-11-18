@@ -110,5 +110,7 @@ disp('Done!')
 
 %% load and display
 
-load t4a7403758257454.mat
+%load t4a7403758257454.mat
+load t4a_full.mat
+reproductionNumber = 5:5:140;
 surf(infectRates, reproductionNumber, finalRecovered)
