@@ -107,3 +107,8 @@ filename = ['t4a' num2str(tic) '.mat'];
 save(filename,'finalRecovered')
 
 disp('Done!')
+
+%% load and display
+
+load t4a7403758257454.mat
+surf(infectRates, reproductionNumber, finalRecovered)
