@@ -7,11 +7,11 @@ nAgents = 1000;
 gridSize = 100;
 
 moveProb = 0.7;
-reproductionNumber = 5:10:140;
+reproductionNumber = 10:10:120;
 infectRates = [0.9:-0.1: 0.1];
 initInfected = 0.01;
 
-nRepeats = 15;
+nRepeats = 10;
 maxSteps = 50000;
 
 finalRecovered = zeros(length(reproductionNumber),length(infectRates));
